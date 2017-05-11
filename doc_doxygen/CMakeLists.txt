@@ -1,19 +1,22 @@
+# add a target to generate API documentation with Doxygen
 find_package(Doxygen)
-if(NOT DOXYGEN_FOUND)
-    message("Doxygen not found, I will not generate/install the documentation")
-else()
-   configure_file(Doxyfile.in Doxyfile)
+option(BUILD_DOCUMENTATION "Create and install the HTML based API documentation (requires Doxygen)" ${DOXYGEN_FOUND})
 
-   set(DOXYGEN_INPUT ${CMAKE_SOURCE_DIR}/doc_doxygen/Doxyfile)
-   set(DOXYGEN_OUTPUT ${APIDOC_DIR}/html/index.html)
+if(BUILD_DOCUMENTATION)
+    if(NOT DOXYGEN_FOUND)
+        message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+    endif()
 
-   add_custom_target(doc ALL
-     COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation..."
-     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_INPUT} > /dev/null
-     COMMAND ${CMAKE_COMMAND} -E echo "Done."
-     )
+    set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
+    set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
-  install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html 
-          DESTINATION share/doc/${CMAKE_PROJECT_NAME})
+    configure_file(${doxyfile_in} ${doxyfile} @ONLY)
 
+    add_custom_target(doc
+        COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
+
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION share/doc)
 endif()
