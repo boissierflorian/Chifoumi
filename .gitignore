@@ -1,0 +1,17 @@
+# Fichiers objets
+*.o
+*build*
+
+# Bibliothèques
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.out
+
+# Fichies temporaires
+*~
+*#
+#*
