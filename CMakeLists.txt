@@ -10,7 +10,7 @@ pkg_check_modules( PKG REQUIRED cpputest libglog )
 include_directories( ${PKG_INCLUDE_DIRS} )
 
 # Programme principal
-add_executable( chifoumi.out src/main.cpp )
+add_executable( chifoumi.out src/main.cpp src/Game.cpp src/Random.cpp )
 target_link_libraries( chifoumi.out ${PKG_LIBRARIES} )
 
 # Tests unitaires
