@@ -14,7 +14,8 @@ add_executable( chifoumi.out src/main.cpp src/Game.cpp src/Random.cpp )
 target_link_libraries( chifoumi.out ${PKG_LIBRARIES} )
 
 # Tests unitaires
-add_executable( chifoumi_test.out src/main_test.cpp )
+add_executable( chifoumi_test.out src/main_test.cpp
+  src/Game_test.cpp src/Game.cpp src/Random.cpp)
 target_link_libraries( chifoumi_test.out ${PKG_LIBRARIES} )
 
 # Documentation

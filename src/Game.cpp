@@ -43,12 +43,13 @@ void Game::getPlayerInput()
 
 
 ////////////////////////////////////////////////////////////
-void Game::displayResult()
+int Game::play(Choice playerInput)
 {
   m_IAChoice = (Choice) m_random(3);
   int result = 0; // 0 (Draw) -1 (Loose) 1 (Won)
-  
-  switch(m_playerChoice)
+
+  // Combat
+  switch(playerInput)
   {
   case ROCK:
     if (m_IAChoice == ROCK) result = 0;
@@ -67,17 +68,18 @@ void Game::displayResult()
     break;
   }
 
+  // Format output
   string playerChoice = priv_convertChoice(m_playerChoice);
-  string IAChoice = priv_convertChoice(m_IAChoice);
-  
+  string IAChoice     = priv_convertChoice(m_IAChoice);
+   
   if (result == 0)
     m_lastResult = "draw (" + playerChoice + "-" + IAChoice + ")";
   else if (result == -1)
     m_lastResult = "lost (" + playerChoice + "-" + IAChoice + ")";
   else
-      m_lastResult = "won (" + playerChoice + "-" + IAChoice + ")";
+    m_lastResult = "won (" + playerChoice + "-" + IAChoice + ")";
 
-  cout << m_lastResult << endl;
+  return result;
 }
 
 
@@ -109,4 +111,18 @@ const std::string Game::getLastResult() const
 bool Game::isRunning() const
 {
   return m_running;
+}
+
+
+////////////////////////////////////////////////////////////
+Choice Game::getIAChoice() const
+{
+  return m_IAChoice;
+} 
+
+
+/////////////////////////////////////////////////////////
+Choice Game::getPlayerChoice() const
+{
+  return m_playerChoice;
 }

@@ -20,8 +20,13 @@ int main()
   while (game.isRunning())
   {
     game.getPlayerInput();
-    if (!game.isRunning()) break;
-    game.displayResult();
+
+    if (!game.isRunning())
+      break;
+
+    game.play(game.getPlayerChoice());
+
+    cout << game.getLastResult() << endl;;
   }
   
   return 0;
