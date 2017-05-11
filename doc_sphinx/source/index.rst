@@ -3,20 +3,33 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Chifoumi's documentation!
+Documentation du Chifoumi
 ====================================
 
-Contents:
+.. rubric:: Résumé
 
-.. toctree::
-   :maxdepth: 2
+Le chifoumi plus précisément appelé pierre-feuille-ciseaux est un jeu qui se joue
+en 1 contre 1. Chaque joueur doit choisir un élément cité ci-dessus puis les règles
+suivantes déterminent qui gagne le duel.
 
+.. list-table:: Règles
+   :widths: 10 10 20 
+   :header-rows: 1 
+   :stub-columns: 1 
 
+      * - Règles 
+        - Pierre 
+	- Feuille
+	- Ciseaux  
+      * - Pierre 
+	- B 
+	- V
+	- X  
 
-Indices and tables
-==================
+.. rubric:: Sommaire
+.. toctree:: 
+   :maxdepth: 2 
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   installation
+   chifoumi_cli
+   chifoumi_gui	      
