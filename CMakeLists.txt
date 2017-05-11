@@ -17,5 +17,5 @@ target_link_libraries( chifoumi.out ${PKG_LIBRARIES} )
 add_executable( chifoumi_test.out src/main_test.cpp )
 target_link_libraries( chifoumi_test.out ${PKG_LIBRARIES} )
 
-# Documentation (Doxygen)
+# Documentation
 add_subdirectory(doc_doxygen)
